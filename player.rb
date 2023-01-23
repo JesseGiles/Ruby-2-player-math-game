@@ -5,7 +5,7 @@ class Player
     @name = name
     @lives = 3
 
-    puts "--- #{name} has signed up for battle! ---"
+    puts "--- #{name} has entered the arena! ---"
   end
 
   def lose_life
