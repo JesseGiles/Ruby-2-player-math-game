@@ -6,25 +6,32 @@ class Game
     
     print "> "
 
-    @player1 = $stdin.gets.chomp
-    p1 = Player.new(@player1)
+    @player1_name = $stdin.gets.chomp
+    @player1 = Player.new(@player1_name)
 
     puts "And their opponent:"
     
     print "> "
 
-    @player2 = $stdin.gets.chomp
-    p2 = Player.new(@player2)
+    @player2_name = $stdin.gets.chomp
+    @player2 = Player.new(@player2_name)
 
-    puts "#{@player1} VS #{@player2}... round one, FIGHT!!"
+    puts "#{@player1_name} VS #{@player2_name}... round one, FIGHT!!"
 
-    start_game
-    
+    @current_player = @player1.name
+    start_round(@current_player)
   end
 
-  def start_game
-    new_game = Turn.new
-    new_game.new_turn(@player1)
+
+  def start_round(current_player)
+    new_round = Turn.new
+    new_round.new_turn(current_player)
+
+    if new_round.answered_correctly?
+      puts "Nice"
+    else 
+      @player1.lose_life
+    end
 
   end
 
