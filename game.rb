@@ -24,6 +24,8 @@ class Game
 
   def start_game
     new_game = Turn.new
+    new_game.new_turn(@player1)
+
   end
 
   def end_game
