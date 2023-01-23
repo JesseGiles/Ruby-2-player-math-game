@@ -11,9 +11,10 @@ class Turn
     print "> "
 
     @answer = $stdin.gets.chomp.to_i
-    # puts "#{player} guessed: #{@answer}"
-    # puts "correct answer is: #{@sum}"
+  end
 
+  def generate_number
+    rand(21)
   end
 
   def answered_correctly?
@@ -27,9 +28,5 @@ class Turn
       return false
     end
   end
-
-  def generate_number
-    rand(21)
-  end
-
+  
 end

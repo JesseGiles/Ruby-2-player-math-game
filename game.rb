@@ -22,7 +22,6 @@ class Game
     start_round(@current_player)
   end
 
-
   def start_round(current_player)
     new_round = Turn.new(current_player)
 
@@ -38,14 +37,6 @@ class Game
       puts "Current Health Bars: #{@player1.name} #{@player1.lives} VS #{@player2.name} #{@player2.lives}"
       swap_current_player(@current_player)
       start_round(@current_player)
-
-      # if current_player === @player1
-      #   @current_player = @player2
-      #   start_round(@current_player)
-      # else 
-      #   @current_player = @player1
-      #   start_round(@current_player)
-      
     end
   end
 
@@ -58,9 +49,9 @@ class Game
   end
 
   def end_game
-    puts "------------- "
-    puts "------------- "
-    puts "--- FINISH HIM --- "
+    puts "------------------- "
+    puts "------------------- "
+    puts "--- FINISH HIM! --- "
     if @current_player === @player1
      puts "#{@player2.name} defeated #{@player1.name}. FATALITY."
      puts "#{@player2.name} wins with a final score: #{@player2.lives}/3"
