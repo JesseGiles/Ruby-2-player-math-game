@@ -6,37 +6,68 @@ class Game
     
     print "> "
 
-    @player1_name = $stdin.gets.chomp
-    @player1 = Player.new(@player1_name)
+    #@player1_name = $stdin.gets.chomp
+    @player1 = Player.new($stdin.gets.chomp)
 
     puts "And their opponent:"
     
     print "> "
 
-    @player2_name = $stdin.gets.chomp
-    @player2 = Player.new(@player2_name)
+    #@player2_name = $stdin.gets.chomp
+    @player2 = Player.new($stdin.gets.chomp)
 
-    puts "#{@player1_name} VS #{@player2_name}... round one, FIGHT!!"
+    puts "#{@player1.name} VS #{@player2.name}... round one, FIGHT!!"
 
-    @current_player = @player1.name
+    @current_player = @player1
     start_round(@current_player)
   end
 
 
   def start_round(current_player)
-    new_round = Turn.new
-    new_round.new_turn(current_player)
+    new_round = Turn.new(current_player)
 
-    if new_round.answered_correctly?
-      puts "Nice"
-    else 
-      @player1.lose_life
+    if !new_round.answered_correctly?
+      @current_player.lose_life
+      if @current_player.lives === 0
+        end_game
+      else swap_current_player(@current_player)
+        puts "Current Health Bars: #{@player1.name} #{@player1.lives} VS #{@player2.name} #{@player2.lives}"
+        start_round(@current_player)
+      end
+    else
+      puts "Current Health Bars: #{@player1.name} #{@player1.lives} VS #{@player2.name} #{@player2.lives}"
+      swap_current_player(@current_player)
+      start_round(@current_player)
+
+      # if current_player === @player1
+      #   @current_player = @player2
+      #   start_round(@current_player)
+      # else 
+      #   @current_player = @player1
+      #   start_round(@current_player)
+      
     end
+  end
 
+  def swap_current_player(current_player)
+    if current_player === @player1
+      @current_player = @player2
+    else 
+      @current_player = @player1
+    end
   end
 
   def end_game
+    puts "------------- "
+    puts "------------- "
+    puts "--- FINISH HIM --- "
+    if @current_player === @player1
+     puts "#{@player2.name} defeated #{@player1.name}. FATALITY."
+     puts "#{@player2.name} wins with a final score: #{@player2.lives}/3"
+    else 
+      puts "#{@player1.name} defeated #{@player2.name}. FATALITY."
+      puts "#{@player1.name} wins with a final score: #{@player1.lives}/3"
+    end
   end
-
 
 end

@@ -10,7 +10,6 @@ class Player
 
   def lose_life
     @lives -= 1
-    puts "#{@name} is down to #{@lives} health"
   end
 
 end

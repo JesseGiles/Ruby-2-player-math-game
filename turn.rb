@@ -1,27 +1,29 @@
 class Turn
 
-  def new_turn(player)
+  def initialize(player)
     num1 = generate_number
     num2 = generate_number
     @sum = num1 + num2
     
     puts "----- NEW ROUND -----"
 
-    puts "#{player}: What does #{num1} plus #{num2} equal?"
+    puts "#{player.name}: What does #{num1} plus #{num2} equal?"
     print "> "
 
     @answer = $stdin.gets.chomp.to_i
-    puts "#{player} guessed: #{@answer}"
-    puts "correct answer is: #{@sum}"
+    # puts "#{player} guessed: #{@answer}"
+    # puts "correct answer is: #{@sum}"
 
   end
 
   def answered_correctly?
     if @answer === @sum
+      puts "------------- "
       puts "Correct! Flawless Victory!"
       return true
     else 
-      puts "Wrong! Do not fail me again."
+      puts "------------- "
+      puts "Wrong! Your opponent uppercuts you."
       return false
     end
   end
